@@ -14,7 +14,13 @@ class PostsIndex extends React.Component {
         <ul>
           {this.props.posts.map((post) =>
           <li>
-            {post.title}
+            <h1>{post.title}</h1>
+            <h2>{post.content}</h2>
+
+            {post.comments.map((comment =>
+              <h3>{comment.content}</h3>
+              ))}
+
           </li>
         )}
         </ul>

@@ -10,7 +10,11 @@ class PostsIndex extends React.Component {
 
   render() {
     return (
+
       <div className="col-md-6 col-md-offset-3">
+
+        {this.props.children}
+
         <div className="feed">
           {this.props.posts.map((post) =>
           <div className="panel panel-primary">
@@ -27,10 +31,12 @@ class PostsIndex extends React.Component {
               {post.comments.map((comment =>
                 <li className="list-group-item">
                   {comment.content}
-                  <div class="reply">
-                  {comment.replies.map((reply =>
-                    "THIS IS A REPLY!"
-                  ))}
+                  <div className="reply">
+                  <ul>
+                    {comment.replies.map((reply =>
+                      <li> {reply.content} </li>
+                    ))}
+                  </ul>
                   </div>
                 </li>
               ))}

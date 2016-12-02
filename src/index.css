@@ -4,9 +4,12 @@ body {
   font-family: sans-serif;
 }
 
-.post {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 5px
+.reply {
+  padding-left: 15px;
+}
+
+.nav {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center
 }

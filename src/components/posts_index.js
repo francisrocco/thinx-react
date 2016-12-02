@@ -27,6 +27,11 @@ class PostsIndex extends React.Component {
               {post.comments.map((comment =>
                 <li className="list-group-item">
                   {comment.content}
+                  <div class="reply">
+                  {comment.replies.map((reply =>
+                    "THIS IS A REPLY!"
+                  ))}
+                  </div>
                 </li>
               ))}
             </ul>

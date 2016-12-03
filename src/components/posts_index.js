@@ -10,39 +10,41 @@ class PostsIndex extends React.Component {
 
   render() {
     return (
-
-      <div className="col-md-6 col-md-offset-3">
-
+      <div>
         {this.props.children}
 
-        <div className="feed">
-          {this.props.posts.map((post) =>
-          <div className="panel panel-primary">
+        <div className="col-md-6 col-md-offset-3">
 
-            <div className="panel-heading">
-              {post.title}
+
+          <div className="feed">
+            {this.props.posts.map((post) =>
+            <div className="panel panel-primary">
+
+              <div className="panel-heading">
+                {post.title}
+              </div>
+
+              <div className="panel-body">
+                {post.content}
+              </div>
+
+              <ul className="list-group">
+                {post.comments.map((comment =>
+                  <li className="list-group-item">
+                    {comment.content}
+                    <div className="reply">
+                    <ul>
+                      {comment.replies.map((reply =>
+                        <li> {reply.content} </li>
+                      ))}
+                    </ul>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <div className="panel-body">
-              {post.content}
-            </div>
-
-            <ul className="list-group">
-              {post.comments.map((comment =>
-                <li className="list-group-item">
-                  {comment.content}
-                  <div className="reply">
-                  <ul>
-                    {comment.replies.map((reply =>
-                      <li> {reply.content} </li>
-                    ))}
-                  </ul>
-                  </div>
-                </li>
-              ))}
-            </ul>
+          )}
           </div>
-        )}
         </div>
       </div>
     )

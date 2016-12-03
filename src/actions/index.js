@@ -14,3 +14,20 @@ export function fetchPosts(){
     payload: posts
   }
 }
+
+export function addPost(newPostFromForm) {
+  const newPostFromApi = fetch(`${databaseUrl}posts`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({post: newPostFromForm})
+  }).then(response => {
+    return response.json()
+  }).then(newPostPayload => {
+    return newPostPayload
+  })
+
+  return {type: 'ADD_POST', payload: newPostFromApi}
+}

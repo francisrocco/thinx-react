@@ -29,18 +29,24 @@ class PostsIndex extends React.Component {
               </div>
 
               <ul className="list-group">
+
+                {post.comments.length > 0 ?
+                  <li className="list-group-item">
+                    COMMENTS
+                  </li> : null
+                }
+
                 {post.comments.map((comment =>
                   <li className="list-group-item">
                     {comment.content}
-                    <div className="reply">
                     <ul>
                       {comment.replies.map((reply =>
                         <li> {reply.content} </li>
                       ))}
                     </ul>
-                    </div>
                   </li>
                 ))}
+
               </ul>
             </div>
           )}

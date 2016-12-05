@@ -6,6 +6,33 @@ import * as actions from '../actions'
 class PostsIndex extends React.Component {
   constructor(props) {
     super(props)
+    this.state = ({
+      showCommentsPostId: null,
+      showRepliesCommentId: null,
+      showNewCommentPostId: null,
+      showNewReplyCommentId: null
+    });
+    this.showComments = this.showComments.bind(this)
+    this.showReplies = this.showReplies.bind(this)
+    this.showNewComment = this.showNewComment.bind(this)
+    this.showNewReply = this.showNewReply.bind(this)
+  }
+
+  showComments(commentsToShow){
+    debugger
+    this.setState({ showCommentsPostId: commentsToShow});
+  }
+
+  showReplies(repliesToShow){
+    this.setState({ showRepliesCommentId: repliesToShow});
+  }
+
+  showNewComment(newCommentToShow){
+    this.setState({ showNewCommentPostId: newCommentToShow});
+  }
+
+  showNewReply(newReplyToShow){
+    this.setState({ showNewReplyCommentId: newReplyToShow});
   }
 
   render() {
@@ -14,7 +41,6 @@ class PostsIndex extends React.Component {
         {this.props.children}
 
         <div className="col-md-6 col-md-offset-3">
-
 
           <div className="feed">
             {this.props.posts.map((post) =>
@@ -31,21 +57,29 @@ class PostsIndex extends React.Component {
               <ul className="list-group">
 
                 {post.comments.length > 0 ?
-                  <li className="list-group-item">
-                    COMMENTS
+                  <li className="list-group-item" onClick={ ()=>this.showComments(post.id) }>
+                    SHOW COMMENTS
                   </li> : null
                 }
 
-                {post.comments.map((comment =>
-                  <li className="list-group-item">
-                    {comment.content}
-                    <ul>
-                      {comment.replies.map((reply =>
-                        <li> {reply.content} </li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
+                { this.state.showCommentsPostId == post.id ?
+
+                  <div>
+                    {post.comments.map((comment =>
+
+                      <li className="list-group-item">
+                        {comment.content}
+                        <ul>
+                          {comment.replies.map((reply =>
+                            <li> {reply.content} </li>
+                          ))}
+                        </ul>
+                      </li>
+
+                    ))}
+                  </div>
+
+                : null }
 
               </ul>
             </div>

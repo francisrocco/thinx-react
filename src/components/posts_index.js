@@ -8,7 +8,7 @@ class PostsIndex extends React.Component {
     super(props)
     this.state = ({
       showCommentsPostId: [],
-      showRepliesCommentId: null,
+      showRepliesCommentId: [],
       showNewCommentPostId: null,
       showNewReplyCommentId: null
     });
@@ -23,7 +23,7 @@ class PostsIndex extends React.Component {
   }
 
   showReplies(repliesToShow){
-    this.setState({ showRepliesCommentId: repliesToShow});
+    this.setState({ showRepliesCommentId: [ ...this.state.showRepliesCommentId, repliesToShow]});
   }
 
   showNewComment(newCommentToShow){
@@ -55,7 +55,7 @@ class PostsIndex extends React.Component {
 
               <ul className="list-group">
 
-                {post.comments.length > 0 ?
+                {(post.comments.length > 0) && !this.state.showCommentsPostId.includes(post.id) ?
                   <li className="list-group-item" onClick={ ()=>this.showComments(post.id) }>
                     SHOW COMMENTS
                   </li> : null
@@ -68,11 +68,25 @@ class PostsIndex extends React.Component {
 
                       <li className="list-group-item">
                         {comment.content}
-                        <ul>
-                          {comment.replies.map((reply =>
-                            <li> {reply.content} </li>
-                          ))}
-                        </ul>
+
+                        {(comment.replies.length > 0) && !this.state.showRepliesCommentId.includes(comment.id) ?
+                          <p onClick={ ()=>this.showReplies(comment.id) }>
+                            SHOW REPLIES
+                          </p> : null
+                        }
+
+                        { this.state.showRepliesCommentId.includes(comment.id) ?
+
+                          <div>
+                            <ul>
+                              {comment.replies.map((reply =>
+                                <li> {reply.content} </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                        : null }
+
                       </li>
 
                     ))}

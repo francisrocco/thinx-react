@@ -94,6 +94,20 @@ class PostsIndex extends React.Component {
 
                 : null }
 
+                { this.state.showNewCommentPostId != post.id ?
+
+                  <li className="list-group-item" onClick={ ()=>this.showNewComment(post.id) }>
+                    ADD COMMENT
+                  </li>
+
+                  :
+
+                  <li className="list-group-item">
+                    "YOU'RE ABOUT TO ADD A COMMENT"
+                  </li>
+
+                 }
+
               </ul>
             </div>
           )}

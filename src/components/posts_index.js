@@ -7,7 +7,7 @@ class PostsIndex extends React.Component {
   constructor(props) {
     super(props)
     this.state = ({
-      showCommentsPostId: null,
+      showCommentsPostId: [],
       showRepliesCommentId: null,
       showNewCommentPostId: null,
       showNewReplyCommentId: null
@@ -19,8 +19,7 @@ class PostsIndex extends React.Component {
   }
 
   showComments(commentsToShow){
-    debugger
-    this.setState({ showCommentsPostId: commentsToShow});
+    this.setState({ showCommentsPostId: [ ...this.state.showCommentsPostId, commentsToShow]});
   }
 
   showReplies(repliesToShow){
@@ -62,7 +61,7 @@ class PostsIndex extends React.Component {
                   </li> : null
                 }
 
-                { this.state.showCommentsPostId == post.id ?
+                { this.state.showCommentsPostId.includes(post.id) ?
 
                   <div>
                     {post.comments.map((comment =>

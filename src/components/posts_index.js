@@ -50,7 +50,7 @@ class PostsIndex extends React.Component {
               </div>
 
               <div className="panel-body">
-                {post.content}
+                <b>{post.content}</b>
               </div>
 
               <ul className="list-group">

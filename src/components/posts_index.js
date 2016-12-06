@@ -16,6 +16,7 @@ class PostsIndex extends React.Component {
     this.showReplies = this.showReplies.bind(this)
     this.showNewComment = this.showNewComment.bind(this)
     this.showNewReply = this.showNewReply.bind(this)
+    this.newCommentHandler = this.newCommentHandler.bind(this)
   }
 
   showComments(commentsToShow){
@@ -32,6 +33,13 @@ class PostsIndex extends React.Component {
 
   showNewReply(newReplyToShow){
     this.setState({ showNewReplyCommentId: newReplyToShow});
+  }
+
+  newCommentHandler(event) {
+    debugger
+    event.preventDefault()
+    const newComment = {content: this.refs.content.value, post_id: this.refs.post_id.value}
+    this.props.actions.addComment(newComment)
   }
 
   render() {
@@ -70,9 +78,9 @@ class PostsIndex extends React.Component {
                         {comment.content}
 
                         {(comment.replies.length > 0) && !this.state.showRepliesCommentId.includes(comment.id) ?
-                          <p onClick={ ()=>this.showReplies(comment.id) }>
+                          <div onClick={ ()=>this.showReplies(comment.id) }>
                             SHOW REPLIES
-                          </p> : null
+                          </div> : null
                         }
 
                         { this.state.showRepliesCommentId.includes(comment.id) ?
@@ -97,13 +105,21 @@ class PostsIndex extends React.Component {
                 { this.state.showNewCommentPostId != post.id ?
 
                   <li className="list-group-item" onClick={ ()=>this.showNewComment(post.id) }>
-                    ADD COMMENT
+                    ADD A COMMENT
                   </li>
 
                   :
 
                   <li className="list-group-item">
-                    "YOU'RE ABOUT TO ADD A COMMENT"
+                    <form onSubmit={this.newCommentHandler}>
+                      <div className="input-group">
+                        <input type="text" className="form-control" placeholder="new comment" ref="content" />
+                        <input type="hidden" ref="post_id" value= {post.id} />
+                        <span className="input-group-btn">
+                          <button className="btn btn-primary" type="submit">Go!</button>
+                        </span>
+                      </div>
+                    </form>
                   </li>
 
                  }

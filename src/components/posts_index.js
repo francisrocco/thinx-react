@@ -78,8 +78,8 @@ class PostsIndex extends React.Component {
                         {comment.content}
 
                         {(comment.replies.length > 0) && !this.state.showRepliesCommentId.includes(comment.id) ?
-                          <div onClick={ ()=>this.showReplies(comment.id) }>
-                            SHOW REPLIES
+                          <div className="show-reply" onClick={ ()=>this.showReplies(comment.id) }>
+                            show replies
                           </div> : null
                         }
 

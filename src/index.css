@@ -8,6 +8,11 @@ body {
   padding-left: 15px;
 }
 
+.show-reply {
+  color: #337AB7;
+  font-size: small;
+}
+
 .nav {
   padding-top: 10px;
   padding-bottom: 10px;

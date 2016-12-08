@@ -5,7 +5,7 @@ export default function Welcome(props){
 
   return (
     <div>
-      <Link className="btn btn-success" to={'/posts'}>Click Here to View Posts</Link>
+      <center><Link className="btn btn-primary" to={'/posts'}>Click Here to View Posts</Link></center>
     </div>
   )
 }

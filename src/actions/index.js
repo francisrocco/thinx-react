@@ -31,3 +31,20 @@ export function addPost(newPostFromForm) {
 
   return {type: 'ADD_POST', payload: newPostFromApi}
 }
+
+export function addComment(newCommentFromForm) {
+  const newCommentFromApi = fetch(`${databaseUrl}comments`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({comment: newCommentFromForm})
+  }).then(response => {
+    return response.json()
+  }).then(newCommentPayload => {
+    return newCommentPayload
+  })
+
+  return {type: 'ADD_COMMENT', payload: newCommentFromApi}
+}

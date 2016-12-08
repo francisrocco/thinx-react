@@ -1,5 +1,5 @@
-// const databaseUrl = '###.herokuapp.com/api/v1/'
-const databaseUrl = 'http://localhost:3000/api/v1/'
+const databaseUrl = 'https://francis-thinx-api.herokuapp.com/api/v1/'
+// const databaseUrl = 'http://localhost:3000/api/v1/'
 
 export function fetchPosts(){
   const posts = fetch(`${databaseUrl}posts`, {

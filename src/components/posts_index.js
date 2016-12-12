@@ -75,7 +75,7 @@ class PostsIndex extends React.Component {
 
                 {(post.comments.length > 0) && !this.state.showCommentsPostId.includes(post.id) ?
                   <li className="list-group-item" onClick={ ()=>this.showComments(post.id) }>
-                    show comments
+                    show { post.comments.length == 1 ? `1 comment` : `all ${post.comments.length} comments` }
                   </li> : null
                 }
 

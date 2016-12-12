@@ -39,7 +39,7 @@ class PostsIndex extends React.Component {
     event.preventDefault()
     const newComment = {content: this.refs.content.value, post_id: this.refs.post_id.value}
     this.props.actions.addComment(newComment)
-    this.props.resetForm()
+    this.refs.content.value = ""
   }
 
   render() {

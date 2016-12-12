@@ -48,3 +48,20 @@ export function addComment(newCommentFromForm) {
 
   return {type: 'ADD_COMMENT', payload: newCommentFromApi}
 }
+
+export function addReply(newReplyFromForm) {
+  const newReplyFromApi = fetch(`${databaseUrl}replies`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({reply: newReplyFromForm})
+  }).then(response => {
+    return response.json()
+  }).then(newReplyPayload => {
+    return newReplyPayload
+  })
+
+  return {type: 'ADD_REPLY', payload: newReplyFromApi}
+}

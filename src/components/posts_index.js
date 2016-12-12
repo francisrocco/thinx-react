@@ -17,6 +17,7 @@ class PostsIndex extends React.Component {
     this.showNewComment = this.showNewComment.bind(this)
     this.showNewReply = this.showNewReply.bind(this)
     this.newCommentHandler = this.newCommentHandler.bind(this)
+    this.newReplyHandler = this.newReplyHandler.bind(this)
   }
 
   showComments(commentsToShow){
@@ -38,7 +39,16 @@ class PostsIndex extends React.Component {
   newCommentHandler(event) {
     event.preventDefault()
     const newComment = {content: this.refs.content.value, post_id: this.refs.post_id.value}
+    this.setState({ showCommentsPostId: [ ...this.state.showCommentsPostId, parseInt(this.refs.post_id.value)]});
     this.props.actions.addComment(newComment)
+    this.refs.content.value = ""
+  }
+
+  newReplyHandler(event) {
+    event.preventDefault()
+    const newReply = {content: this.refs.content.value, comment_id: this.refs.comment_id.value}
+    this.setState({ showRepliesCommentId: [ ...this.state.showRepliesCommentId, parseInt(this.refs.comment_id.value)]});
+    this.props.actions.addReply(newReply)
     this.refs.content.value = ""
   }
 
@@ -65,7 +75,7 @@ class PostsIndex extends React.Component {
 
                 {(post.comments.length > 0) && !this.state.showCommentsPostId.includes(post.id) ?
                   <li className="list-group-item" onClick={ ()=>this.showComments(post.id) }>
-                    SHOW COMMENTS
+                    show comments
                   </li> : null
                 }
 
@@ -125,7 +135,7 @@ class PostsIndex extends React.Component {
                 { this.state.showNewCommentPostId != post.id ?
 
                   <li className="list-group-item" onClick={ ()=>this.showNewComment(post.id) }>
-                    ADD A COMMENT
+                    add a comment
                   </li>
 
                   :

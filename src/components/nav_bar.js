@@ -11,7 +11,7 @@ export default class NavBar extends React.Component {
 
     return (
       <div className="nav">
-        <Link to={"/posts"}> THINX </Link> - <Link to={"/posts/new"}> ADD POST </Link>
+        <Link to={"/"}> THINX </Link> - <Link to={"/posts"}> POSTS </Link> - <Link to={"/posts/new"}> ADD POST </Link>
       </div>
     )
 }

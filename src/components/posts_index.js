@@ -78,7 +78,7 @@ class PostsIndex extends React.Component {
                         {comment.content}
 
                         {(comment.replies.length > 0) && !this.state.showRepliesCommentId.includes(comment.id) ?
-                          <div className="show-reply" onClick={ ()=>this.showReplies(comment.id) }>
+                          <div className="reply" onClick={ ()=>this.showReplies(comment.id) }>
                             show replies
                           </div> : null
                         }
@@ -94,6 +94,26 @@ class PostsIndex extends React.Component {
                           </div>
 
                         : null }
+
+                        { this.state.showNewReplyCommentId != comment.id ?
+
+                          <div className="reply" onClick={ ()=>this.showNewReply(comment.id) }>
+                            add reply
+                          </div>
+
+                          :
+
+                          <form onSubmit={this.newReplyHandler}>
+                            <div className="input-group">
+                              <input type="text" className="form-control" placeholder="new reply" ref="content" />
+                              <input type="hidden" ref="comment_id" value= {comment.id} />
+                              <span className="input-group-btn">
+                                <button className="btn btn-primary" type="submit">Go!</button>
+                              </span>
+                            </div>
+                          </form>
+
+                         }
 
                       </li>
 
